@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Todo List</title>
+    <link rel="shortcut icon" href="ilfan web.jpg" type="image/x-icon">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <main class="page">
+      <div class="card">
+        <h1 class="title">Todo List</h1>
+
+        <form id="todo-form" class="form" autocomplete="off">
+          <input id="task-input" class="input task-input" type="text"
+            placeholder="Add a todo . . ." required />
+          <input id="date-input" class="input date-input" type="date" />
+          <button id="add-btn" class="btn add-btn" type="submit"
+            title="Add">＋</button>
+        </form>
+
+        <div class="controls">
+          <div class="left-controls">
+            <select id="filter" class="filter">
+              <option value="all">Filter: All</option>
+              <option value="active">Active</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+
+          <div class="right-controls">
+            <button id="delete-all" class="btn ghost">DELETE ALL</button>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="todo-table">
+            <thead>
+              <tr>
+                <th>TASK</th>
+                <th>DUE DATE</th>
+                <th>STATUS</th>
+                <th>ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody id="todo-body">
+              <tr class="empty">
+                <td colspan="4" class="no-task">No task found</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
