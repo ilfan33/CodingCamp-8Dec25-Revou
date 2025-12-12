@@ -61,6 +61,14 @@ function render() {
     cb.addEventListener("change", () => toggleDone(t.id))
 
     const span = document.createElement("span")
+    const isLight = document.documentElement.classList.contains("light")
+
+    if (isLight) {
+      span.style.color = "#333333" // warna gelap untuk LIGHT MODE
+    } else {
+      span.style.color = "#e6eef8" // warna terang untuk DARK MODE
+    }
+    span.className = "todo-text"
     span.textContent = t.text
     span.style.color = "#e6eef8"
     span.style.fontWeight = "600"
@@ -185,3 +193,35 @@ deleteAllBtn.addEventListener("click", () => {
 
 // initial load
 load()
+
+// THEME HANDLING
+const themeToggle = document.getElementById("theme-toggle")
+
+function applyTheme(theme) {
+  if (theme === "light") {
+    document.documentElement.classList.add("light")
+    themeToggle.textContent = "DARK MODE"
+  } else {
+    document.documentElement.classList.remove("light")
+    themeToggle.textContent = "LIGHT MODE"
+  }
+}
+
+// load from storage
+let currentTheme = localStorage.getItem("theme") || "dark"
+applyTheme(currentTheme)
+
+// toggle handler
+themeToggle.addEventListener("click", () => {
+  currentTheme = currentTheme === "dark" ? "light" : "dark"
+  applyTheme(currentTheme)
+  localStorage.setItem("theme", currentTheme)
+
+  // update warna semua span
+  document.querySelectorAll(".todo-text").forEach((span) => {
+    const color = getComputedStyle(document.documentElement).getPropertyValue(
+      "--text-color-accent"
+    )
+    span.style.color = color
+  })
+})
